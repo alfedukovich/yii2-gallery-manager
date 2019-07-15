@@ -254,7 +254,11 @@ class GalleryBehavior extends Behavior
 
     private function removeFile($fileName)
     {
-        return FileHelper::unlink($fileName);
+        if (file_exists($this->getFilePath($id, $version))) {
+            return FileHelper::unlink($fileName);
+        } else {
+            return false;
+        }
     }
 
     /**
